@@ -1,64 +1,53 @@
 
 const App = () => {
 
+  const categories = [
+    {
+      id: 1,
+      title: 'Caps and stuff',
+    },
+
+    {
+      id: 2,
+      title: 'Clifts like Jakets though',
+    },
+
+    {
+      id: 3,
+      title: 'Boots-Boots-Boots',
+    },
+
+    {
+      id: 4,
+      title: 'For Chiks and  stuff',
+    },
+
+    {
+      id: 5,
+      title: 'For Dude and stuff',
+    },
+  ]
+
   return (
 
     <div className="categories-container">
       
       {/*#1 product category*/}
-      <div className="category-container">
-        {/*<img />  */}
 
-        <div className="category-body-container">
-          <h2>Caps and stuff</h2>
-          <p>Check them OUT!</p>
+      {categories.map(({title}) => {
+
+        return (
+          <div className="category-container">
+            <div className="background-image" />
+          {/*<img />  */}
+  
+          <div className="category-body-container">
+            <h2>{title}</h2>
+            <p>Check them OUT!</p>
+          </div>
         </div>
-
-      </div>
-
-      {/*#2 product catg*/}
-      <div className="category-container">
-        {/*<img />  */}
-
-        <div className="category-body-container">
-          <h2>Jackets or Clifts</h2>
-          <p>Check them OUT!</p>
-        </div>
-
-      </div>
-
-      {/*#3 product catg*/}
-      <div className="category-container">
-        {/*<img />  */}
-
-        <div className="category-body-container">
-          <h2>BOOTS!</h2>
-          <p>Check them OUT!</p>
-        </div>
-
-      </div>
-
-      {/*#4 product catg*/}
-      <div className="category-container">
-        {/*<img />  */}
-
-        <div className="category-body-container">
-          <h2>Chicks girly stuff</h2>
-          <p>Check them OUT!</p>
-        </div>
-
-      </div>
-
-      {/*#5 product catg*/}
-      <div className="category-container">
-        {/*<img />  */}
-
-        <div className="category-body-container">
-          <h2>The DUDES land</h2>
-          <p>Check them OUT!</p>
-        </div>
-
-      </div>
+        )
+})}
       
     </div>
   )
