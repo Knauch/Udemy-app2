@@ -1,5 +1,4 @@
-import './categories.styles.scss'
-
+import Directory from './components/directory/directory.component'
 
 const App = () => {
 
@@ -7,51 +6,37 @@ const App = () => {
     {
       id: 1,
       title: 'Caps and stuff',
+      "imageUrl": "https://i.ibb.co/cvpntL1/hats.png"
     },
 
     {
       id: 2,
-      title: 'Clifts like Jakets though',
+      title: 'Jakets though',
+      "imageUrl": "https://i.ibb.co/px2tCc3/jackets.png"
     },
 
     {
       id: 3,
       title: 'Boots-Boots-Boots',
+      "imageUrl": "https://i.ibb.co/0jqHpnp/sneakers.png"
     },
 
     {
       id: 4,
       title: 'For Chiks and  stuff',
+      "imageUrl": "https://i.ibb.co/GCCdy8t/womens.png"
     },
 
     {
       id: 5,
       title: 'For Dude and stuff',
+      "imageUrl": "https://i.ibb.co/R70vBrQ/men.png"
     },
   ]
 
   return (
+    <Directory categories={categories} />
 
-    <div className="categories-container">
-      
-      {/*#1 product category*/}
-
-      {categories.map(({title}) => {
-
-        return (
-          <div className="category-container">
-            <div className="background-image" />
-          {/*<img />  */}
-  
-          <div className="category-body-container">
-            <h2>{title}</h2>
-            <p>Check them OUT!</p>
-          </div>
-        </div>
-        )
-})}
-      
-    </div>
   )
 
 }
