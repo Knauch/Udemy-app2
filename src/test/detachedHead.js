@@ -1,1 +1,0 @@
-const detachedHead = 'detached HEAD commit 1'
