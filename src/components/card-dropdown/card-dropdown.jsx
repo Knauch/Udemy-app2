@@ -4,7 +4,11 @@ import { useContext } from 'react';
 import { CartContext } from '../../contex/card.context';
 import { useNavigate } from 'react-router-dom';
 
-import { CartDropdownContainer, EmptyMessage, CartItems } from './card-dropdown-style';
+import { 
+    CartDropdownContainer, 
+    EmptyMessage, 
+    CartItems,
+} from './card-dropdown-style';
 
 const CardDropdown = () => {
     const { cartItems } = useContext(CartContext);
@@ -18,8 +22,8 @@ const CardDropdown = () => {
         <CartDropdownContainer>
             <CartItems>
                 {cartItems.length ? (
-                    cartItems.map((cartItem) => (
-                        <CartItem key={cartItem.id} cartItem={cartItem} />
+                    cartItems.map((item) => (
+                        <CartItem key={item.id} cartItem={item} />
                     ))
                 ) : (
                     <EmptyMessage>Your cart is empty</EmptyMessage>

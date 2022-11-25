@@ -7,7 +7,6 @@ const Authentication = () => {
         <AuthContainer>
             <SignInForm />
             <SignUpForm />
-
         </AuthContainer>
     )
 

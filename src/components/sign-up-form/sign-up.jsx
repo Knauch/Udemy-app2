@@ -23,7 +23,6 @@ const SignUpForm = () => {
     const resetFormFields = () => {
         setFormFields(defaultFormFields);
     }
-
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -31,14 +30,11 @@ const SignUpForm = () => {
             alert("PASS is NOT the same!");
             return
         }
-
         try {
             const { user } = await createAuthUserWithEmailAndPassword(
                 email, 
                 password
             )
-
-
             await createUserDocumentFromAuth(user, { displayName });
             resetFormFields();
             alert('User created successfully'); 
@@ -49,13 +45,10 @@ const SignUpForm = () => {
             }
         }
     }
-
     const handleChange = (event) => {
-
         const {name, value} = event.target
         setFormFields({...formFields, [name]: value})
     }
-
     return (
         <SignUpContainer>
             <h1>Sign up with your email and password</h1>

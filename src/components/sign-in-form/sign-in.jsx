@@ -1,11 +1,10 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import { signInWithGooglePopup, 
-     
     signInAuthUserWithEmailAndPassword 
 } from '../../utils/firebase/firebase';
 import FormInput from '../form-iput/form-input'
 import Button, {BUTTON_TYPE_CLASSES} from '../button/button'
-import { UserContext } from '../../contex/user.context';
+
 
 import {
     SignUpContainer,
@@ -30,7 +29,6 @@ const SignInForm = () => {
 
     const signInWithGoogle = async () => {
          await signInWithGooglePopup();
-        
     }
 
     const handleSubmit = async (event) => {
@@ -55,7 +53,6 @@ const SignInForm = () => {
     }
 
     const handleChange = (event) => {
-
         const {name, value} = event.target
         setFormFields({...formFields, [name]: value})
     }
@@ -65,7 +62,6 @@ const SignInForm = () => {
             <h1>Already have an account</h1>
             <span>Sign In with your email and password</span>
             <form onSubmit={ handleSubmit }>
-
                 <FormInput
                     label = "Email"  
                     type = 'email' 
@@ -74,7 +70,6 @@ const SignInForm = () => {
                     name='email' 
                     value={email}
                 />
-
                 <FormInput 
                     label = "Password"
                     type='password' 
@@ -83,7 +78,6 @@ const SignInForm = () => {
                     name='password' 
                     value={password}
                 />
-                
                 <ButtonsContainer>
                     <Button type="submit">Sign IN</Button>
                     <Button type="button" buttonType={BUTTON_TYPE_CLASSES.google} onClick={signInWithGoogle}>
@@ -93,7 +87,6 @@ const SignInForm = () => {
             </form>
         </SignUpContainer>
     )
-
 }
 
 export default SignInForm
