@@ -135,6 +135,7 @@ creatint user.reducer file with setcurent user stuff
 
 useSelector - huk that allows to interact from component with REDUX store - extract the value that you want from the Redux store
 
+useDispatch - hook that getting the functions from store components needed when you add useEfect  hook to other componnet where you want redux tore stuf to be loaded
 
 
 
