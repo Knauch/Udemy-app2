@@ -137,5 +137,25 @@ useSelector - huk that allows to interact from component with REDUX store - extr
 
 useDispatch - hook that getting the functions from store components needed when you add useEfect  hook to other componnet where you want redux tore stuf to be loaded
 
+in the .reducer components we have simple code - data that you get from API
+in the .selector - you transform the data into what you want to get
+
+writing a MIDLEWARE - is a 3 level function for example
+
+const loggerMiddleware = (store) => (next) => (action) => {
+    //if no action type just return next action
+    if(!action.type){
+        return next(action);
+    };
+
+    //getting curent status on stuff
+    console.log('type', action.type)
+    console.log('payload', action.payload)
+    console.log('curentState', store.getState())
+
+    //geting updating status on stuff, through running all reducers in store in order one by one because 'next'
+    next(action);
+    console.log('next state', store.getState())
+}
 
 

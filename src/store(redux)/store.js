@@ -4,14 +4,30 @@ import {
     applyMiddleware,
 } from 'redux';
 
-import logger from 'redux-logger'
+// import logger from 'redux-logger'
 
 //1 big reducer
 import { rootReducer } from './root-reducer';
 
+const loggerMiddleware = (store) => (next) => (action) => {
+  //if no action type just return next action
+  if(!action.type){
+      return next(action);
+  };
+
+  //getting curent status on stuff
+  console.log('type', action.type)
+  console.log('payload', action.payload)
+  console.log('curentState', store.getState())
+
+  //geting updating status on stuff, through running all reducers in store in order one by one because 'next'
+  next(action);
+  console.log('next state', store.getState())
+}
+
 //root-reducer - combination of all our reducers
 //when we dispatch an action it will HIT the middleWares first
-const middleWares = [process.env.NODE_ENV === 'development' && logger].filter(
+const middleWares = [process.env.NODE_ENV === 'development' && loggerMiddleware].filter(
     Boolean
   );
 // function where we send all the middlewares through the applyMiddleware, and get several function under 1 variable composeEnhancers
