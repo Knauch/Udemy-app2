@@ -40,12 +40,15 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 //root-reducer - combination of all our reducers
 //when we dispatch an action it will HIT the middleWares first
-const middleWares = [process.env.NODE_ENV === 'development' && logger].filter(
+const middleWares = [process.env.NODE_ENV !== 'production' && logger].filter(
     Boolean
   );
 // function where we send all the middlewares through the applyMiddleware, and get several function under 1 variable composeEnhancers
 //compose is a function that pass several functiones 
-const composedEnhancers = compose(applyMiddleware(...middleWares));
+
+const composeEnhancer = (process.env.NODE_ENV !== 'production' && 
+window && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
+const composedEnhancers = composeEnhancer(applyMiddleware(...middleWares));
 //2nd argument is undefined(for testing) but we can put there any other default states
 export const store = createStore(persistedReducer, undefined, composedEnhancers);
 
