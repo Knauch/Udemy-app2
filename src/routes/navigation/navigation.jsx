@@ -1,9 +1,10 @@
 import { Outlet } from "react-router-dom";
-import { Fragment, useContext } from 'react';
+import { Fragment } from 'react';
 import { useSelector } from 'react-redux'// for interaction from component with REDUX STORE
 
+import { selectIsCartOpen } from "../../store(redux)/cart/cart.selector";
+
 import { ReactComponent as FabricLogo } from '../../ass/fabric.svg';
-import { CartContext } from "../../contex/card.context";
 
 import { selectCurrentUser } from "../../store(redux)/user/user.selector";
 
@@ -18,7 +19,7 @@ const Navigation = () => {
     const currentUser = useSelector(selectCurrentUser);
 
     //checking if currentUser or cart is Opened component changes => re-render navigation
-    const { isCartOpen } = useContext(CartContext)
+    const isCartOpen  = useSelector(selectIsCartOpen)
 
     return (
         <Fragment>
