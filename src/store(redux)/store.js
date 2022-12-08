@@ -7,7 +7,10 @@ import {
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import logger from 'redux-logger'
+import logger from 'redux-logger';
+
+import createSagaMiddleware from 'redux-saga';
+import { rootSaga } from './root-saga'
 
 //1 big reducer
 import { rootReducer } from './root-reducer';
@@ -32,17 +35,19 @@ import { rootReducer } from './root-reducer';
 const persistConfig = {
   key: 'root',
   storage, 
-  blacklist: ['user']
+  whitelist: ['cart']
 };
+
+const sagaMiddleware = createSagaMiddleware()
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-
 //root-reducer - combination of all our reducers
 //when we dispatch an action it will HIT the middleWares first
-const middleWares = [process.env.NODE_ENV !== 'production' && logger].filter(
-    Boolean
-  );
+const middleWares = [
+  process.env.NODE_ENV !== 'production' && logger,
+  sagaMiddleware  
+].filter(Boolean);
 // function where we send all the middlewares through the applyMiddleware, and get several function under 1 variable composeEnhancers
 //compose is a function that pass several functiones 
 
@@ -51,5 +56,7 @@ window && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 const composedEnhancers = composeEnhancer(applyMiddleware(...middleWares));
 //2nd argument is undefined(for testing) but we can put there any other default states
 export const store = createStore(persistedReducer, undefined, composedEnhancers);
+
+sagaMiddleware.run(rootSaga)
 
 export const persistor = persistStore(store)
